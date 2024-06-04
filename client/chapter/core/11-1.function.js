@@ -132,7 +132,7 @@ setStyle('.first', 123, 'blue');
 // 4번 value가 없는 상황
 // const first = document.querySelector('.first');
 
-// function setStyle(node, prop, value){
+// function setStyle(node, prop,ㅇ value){
 
 // 	if(typeof node === 'string') node = document.querySelector(node)
 // 	if(typeof prop ===! 'string') throw new Error('setStyle 함수의 두 번째 인수는 문자 타입이어야 합니다.')
