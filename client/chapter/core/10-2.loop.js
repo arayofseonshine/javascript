@@ -68,7 +68,7 @@ function next(node){
 
     do{
       
-      node = node.nextSibling;
+      node = node.nextSibiling;
 
     }while(node.nodeType !== 1)
 
