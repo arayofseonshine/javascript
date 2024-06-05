@@ -147,27 +147,103 @@ cb(
 
 
 // 변형코드
-function movePage(url,success,fail){
-	if(url.includes('http')){
-		success(url)
-	} else{
-		fail()
+// function movePage(url,success,fail){
+// 	if(url.includes('http')){
+// 		success(url)
+// 	} else{
+// 		fail()
+// 	}
+// }
+
+// movePage(
+// 	'http://www.naver.com',
+// 	function(url){
+// 		console.log(`현재 입력한 url은 ${url} 입니다.`);
+// 		location.href = url
+// 	},
+// 	function(){
+// 		console.log('잘못된 url을 입력하셨습니다.');
+// 	}
+// )
+
+
+
+
+// higher-order fuction 고차함수 (콜백함수와는 다름) 이런 게 있다..정도 현재는
+// function map(arr,func){
+
+// 	let result = [];
+
+// 	for(let i = 0; i < arr.length; i++){
+// 		result.push(func(arr[i]))
+// 	}
+
+// 	return result
+// }
+// 변형 
+// function map(arr,func){
+// }
+// function greater(n){	
+// }
+// const g = (n) => (m) => n>m
+
+// map([1,2,3]),(item)=>item *2
+// 함수를 인수로 받아 처리함
+// 함수를 리턴함
+// 함수 재활용성 높음
+
+
+// 또 다른 예시
+// function greator(n){
+// 	return function(m){
+// 		return n>m
+// 	}
+// }
+ 
+
+
+
+// 함수 선언문 vs. 함수 (표현)식
+  
+  
+// 즉시 실행 함수 (표현)식
+// Immediately Invoked Function Expression
+// 즉시 실행 함수를 사용하는 이유
+// 함수가 선언됨과 동시에 실행되는 것
+// var는 블록 스코프 : x
+// var는 함수 스코프 : o 
+// 요즘은 잘 사용되지는 않지만 클로저 사용할 때 써야해서 알아야함
+let IIFE;
+
+// encapsulation (캡슐화)
+// 모듈 프로그램 => (import,export)
+// 코드를 안정화하는게 제일 큰 목적
+const MASTER = (function(){	
+
+let uuid = 'asdsfjosdjfods'
+
+	return {
+		getKey(){
+			return uuid
+		},
+		setKey(value){
+			uuid = value
+		}
 	}
+
+})()
+
+// 다른 예시 
+
+function setStyle(node,prop,value){
+
 }
 
-movePage(
-	'http://www.naver.com',
-	function(url){
-		console.log(`현재 입력한 url은 ${url} 입니다.`);
-		location.href = url
-	},
-	function(){
-		console.log('잘못된 url을 입력하셨습니다.');
-	}
-)
-  // 함수 선언문 vs. 함수 (표현)식
-  
-  
-  // 즉시 실행 함수 (표현)식
-  // Immediately Invoked Function Expression
-  let IIFE;
+function getStyle(node,prop){
+
+}
+
+function css(node,prop,value){
+
+}
+
