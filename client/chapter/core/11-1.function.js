@@ -129,6 +129,62 @@ function setStyle(node, prop, value){
 setStyle('.first', 123, 'blue');
 
 
+
+
+
+
+function getStyle(node, prop){
+	
+	if(typeof node === 'string') node = document.querySelector(node);
+	
+	if(typeof prop ===! 'string') throw new Error('getStyle 함수의 두 번째 인수는 문자타입 이어야 합니다.')
+	
+	return getComputedStyle(node)[prop]
+
+}
+
+const h1FontSize = getStyle('.first','fontSize') // 32px
+
+
+/* 함수 만들 때 어려우면 이 순서대로 생각해보기
+1. fuction name 
+2. argument (함수 실행부) 
+3. parameter 
+4. return value 
+5. validation 
+6. Test Driven Development (TDD)
+*/
+
+
+
+function css(node,prop,value){
+
+	if(!value){
+		//getter
+		getComputedStyle(node,prop) // 위에 만들어둔 함수 사용
+	} else {
+		//setter
+		setStyle(node,prop,value) // 위에 만들어둔 함수 사용 
+	}
+	
+	// return !value ? getStyle(node,prop) : setStyle(node,prop,value);
+	// 위 함수 삼항 연산자로 변경 시 
+	// condition ? value1 : value2
+}  // value가 있고 없고 차이에 따라 get, set 구분해서 사용
+
+
+
+// const css2 = (node,prop,value) => !value ? getStyle(node,prop) : setStyle(node,prop,value);
+
+// css2('.first','color','red') // setter
+
+
+css('.first','color') // getter
+
+// 3번째 인자 있고  없고의 차이 
+css('.first', 'color', 'red') // setter 
+css('.first', 'color') // getter
+
 // 4번 value가 없는 상황
 // const first = document.querySelector('.first');
 

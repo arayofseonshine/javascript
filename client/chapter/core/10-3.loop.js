@@ -74,4 +74,4 @@ for(let i = 0; i < l; i++){
 //   - for 문 (역순환)
 for(let i = 0; i < l; i++){
 	console.log( frontEndDev.pop());
-}
+} 
