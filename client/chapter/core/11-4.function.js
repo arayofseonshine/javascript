@@ -35,6 +35,28 @@ pow(2,3);
 // - 기호(!)를 사용하여 n!으로 표기
 // - 예시) 4! = 4 * 3 * 2 * 1
 
+// 예시1
+function factorial(n) {
+	if( n === 1){
+		return n;
+	}
+	else {
+		return n * factorial(n-1);
+	}
+}
+
+
+// 예시2
+function fibonacci(n){
+	if(n <= 0) return 0;
+	if(n <= 2) return 1;
+  
+	return fibonacci(n-1) + fibonacci(n-2);
+	
+  }
+
+// 호출 값이 크면 엄청 느린데 메모이제이션 사용하면 빠르게 불러오기 가능
+
 
 // fibonacci 함수를 재귀 호출 방식으로 작성
 // 참고: https://bit.ly/fibonacci-util
@@ -73,6 +95,43 @@ pow(2,3);
 // 메모이제이션을 사용한 fibonacci 함수를 작성해보세요.
 // 참고: https://bit.ly/memoiz
 // - 동일 계산 반복 시, 이전 계산 값을 메모리에 저장하여 실행 속도를 높이는 방법
+
+// // 예시
+// const cache = {}
+
+// const memoFibo = (n)=>{
+//   if(n <= 0) return 0;
+//   if(n <= 2) return 1;
+
+//   if(cache[n]){
+// 	return cache[n];
+//   }
+//   else {
+// 	return cache[n] = memoFibo(n-1) + memoFibo(n-2);
+//   }
+// }
+
+// 변형 예시 => cache 변수에 저장하지 않고 memoFibo 안에 값을 저장하는 코드
+const memoFibo = (n)=>{
+	if(n <= 0) return 0;
+	if(n <= 2) return 1;
+  
+	if(memoFibo.cache[n]){
+	  return memoFibo.cache[n];
+	}
+	else{
+	  return memoFibo.cache[n] = memoFibo(n-1) + memoFibo(n-2);
+	}
+  }
+  
+  memoFibo.cache = {} // 함수는 객체로 이루어져서 객체처럼 프로퍼티로 저장 가능
+
+
+
+
+
+
+
 
 
 // 회사 부서 팀원들의 월급 총 합을 구해보세요.
@@ -119,3 +178,50 @@ const SocialPartiners = {
     },
   },
 };
+
+
+
+
+// salary value 값만 뽑아내는 재귀함수로 변환
+function sumSalaries(department){
+
+	if(Array.isArray(department)){
+		return department.reduce((acc,cur)=>acc + cur.salary,0)
+	}
+	else {
+	let sum = 0;
+	for(let sub of Object.values(department)){
+		sum += sumSalaries(sub)
+	}
+	return sum;
+	}
+}
+
+
+// 그냥 보여주는 예시 (이런 게 있다..)
+function print(data){
+
+	for(let keyValue of Object.entries(data)){
+		let key = keyValue[0]
+		let value = keyValue[1]
+		
+		if(typeof value === 'object' || Array.isArray(value)){
+			print(value)
+		} 
+		else{ 
+			console.log(key, ' : ', value);
+		}	
+	}
+
+	if(Array.isArray(data)){
+		data.forEach((value,index)=>{
+			if(typeof value === 'object' || Array.isArray(value)){
+				print(value())
+			}
+			else{
+				console.log(index, ' : ', value);
+			}
+		})
+	}
+
+}
