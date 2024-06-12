@@ -11,8 +11,8 @@ let messenger = {
   manufacture: 'kakao'
 };
 
-let text;
-let conversationTool;
+let text = message;
+let conversationTool = messenger;
 
 
 // 비교 (복사 vs. 참조)
@@ -24,12 +24,30 @@ console.log(messenger === conversationTool);
 
 // 객체 복사
 // 1. for ~ in 문을 사용한 복사
+for(let eky in messenger){
+	cloneObject[key] = messenger[key]
+}
+
+console.log(cloneObject);
+
 // 2. Object.assign()을 사용한 복사
+const copyObject = Object.assign({},messenger);
+
+console.log(copyObject);
+
 // 3. 전개 연산자(...)를 사용한 복사
+const spreadObject = { ...messenger };
+
+console.log(spreadObject);
+
 // 4. 객체를 복사해주는 유틸 함수 
+const copideObject = (obj) => object.assign({},obj)
+
+const newObject = 
 
 
 // 객체 병합(합성)
+// mixin
 const cssMapA = {
   color: '#4b004b',
   margin: '0 auto',
@@ -43,7 +61,7 @@ const cssMapB = {
   color: '#3f9e97',
 };
 
-let combinedCssMap;
+let combinedCssMap = Object.assign({},cssMapA,cssMapB);
 
 
 // 중첩된 프로퍼티에 객체를 포함하는 객체 복사
@@ -74,6 +92,54 @@ function cloneDeep(object) {
     })
   );
 }
+
+
+
+
+
+// 예시 1 ) 어려워서 알면 좋은거 
+
+console.clear()
+
+const defaultOptions = {
+  method:'GET',
+  body:null,
+  headers:{
+    'content':'application/json',
+    'access': '*'
+  }
+}
+
+
+function ajax(options){
+
+
+  const {method,headers,body}  = {
+    ...defaultOptions,
+    ...options,
+    headers:{
+      ...defaultOptions.headers,
+      ...options.headers,
+    }
+  }
+
+  // const {method,headers,body} = newOptions;
+
+  // console.log( newOptions );
+
+  // method, body, header
+
+  console.log(method);
+
+
+
+}
+
+
+ajax({
+  method:'POST',
+})
+
 
 
 // 2. Lodash 라이브러리 활용
