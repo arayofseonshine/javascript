@@ -51,6 +51,20 @@ const range = {
   }
 }
 
+const user = {
+  name: 'tiger',
+  age: 30,
+  address: '서울시 중랑구',
+  *[Symbol.iterator] () {
+    for (let key of Object.keys(this)) {
+      yield [key, this[key]];
+    }
+  }
+};
+
+
+
+
 
 
 function* gen(){
@@ -85,9 +99,9 @@ for(const a of customIter){
 
 
 function* idGenerator(){
-  let id = 1;
+  // let id = 1;
   while(true){
-    yield ++id
+    yield `user-${crypto.randomUUID()}`
   }
 }
 
@@ -97,6 +111,12 @@ const id = idGenerator();
 
 
 
+// 1. 일관된 반복 동작 제공 (for..of)
+// 2. 커스텀 반복 제어 가능 (객체를 반복 가능한 상태로)
+// 3. 지연 계산 (필요할 때 마다 반복을 돌림) 성능 
+// 4. 무한 시퀀스 생성 (무한대의 값 생성)
+// 5. 비동기 반복 작업 
+// 6. 다양한 데이터 소스와의 통합 ( Map, Set )
 
 
 

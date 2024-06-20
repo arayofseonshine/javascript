@@ -21,28 +21,32 @@ const people = [
 	  name:'안재명',
 	  age:25,
 	  job:'물음표살인마',
-	  imgSrc:'aszfkq',
+	  imgSrc:'https://randomuser.me/api/portraits/thumb/men/50.jpg',
+	  imgAlt:'대체 텍스트입니다.'
 	},
 	{
 	  id:1,
 	  name:'황선우',
 	  age:51,
 	  job:'요식업 사장님',
-	  imgSrc:'zvkkrq'
+	  imgSrc:'https://randomuser.me/api/portraits/thumb/men/65.jpg',
+	  imgAlt:'대체 텍스트입니다.'
 	},
 	{
 	  id:2,
 	  name:'유진',
 	  job:'디스코드 봇',
 	  age:12,
-	  imgSrc:'gkzqg'
+	  imgSrc:'https://randomuser.me/api/portraits/thumb/men/75.jpg',
+	  imgAlt:'대체 텍스트입니다.'
 	},
 	{
 	  id:3,
 	  name:'김한울',
 	  job:'비둘기',
 	  age:39,
-	  imgSrc:'glzqoe'
+	  imgSrc:'https://randomuser.me/api/portraits/thumb/men/78.jpg',
+	  imgAlt:'대체 텍스트입니다.'
 	}
   ]
   
@@ -102,7 +106,6 @@ const people = [
   
   // shift
   
-  
   // reverse
   const arr = [...people];
   arr.reverse()
@@ -161,18 +164,26 @@ const people = [
   
   const age = people.map(u => u.age + 2);
   
-  
-  const nameTag = people.map(({name})=>{
-	 let template = `
-		<li> 이름 : ${name} </li>
-	 `
-	 return template
+  const cardTag = people.map(({name,age,job,imgSrc,imgAlt})=>{
+	
+	let template = /* html */`
+	  <li class="userCard">
+		<div class="imageField">
+		  <img src="${imgSrc}" alt="${imgAlt}" />
+		</div>
+		<ul class="contents">
+		  <li> <span class="strong">이름</span> : ${name}</li>
+		  <li> <span class="strong">나이</span> : ${age}</li>
+		  <li> <span class="strong">직업</span> : ${job}</li>
+		</ul>
+	  </li>
+	`
+	return template;
   })
   
+  const ul = document.querySelector('ul');
   
-  nameTag.forEach((tag)=>{
-	document.body.insertAdjacentHTML('beforeend',tag)
-  })
+  cardTag.forEach(tag => ul.insertAdjacentHTML('beforeend',tag))
   
   
   
@@ -185,18 +196,165 @@ const people = [
   /* 요소 찾기 ------------------------------ */
   
   // find
+  
+  const 황 = people.find((item)=>{
+	return item.name === '황선우'
+  })
+  
   // findIndex
+  
   
   /* 요소 걸러내기 --------------------------- */
   
   // filter
   
+  const filter = people.filter((item)=>{
+	return item.age > 20
+  })
+  
+  // console.log( ...filter );
+  
+  
+  
   /* 요소별 리듀서(reducer) 실행 -------------- */
   
   // reduce
+  
+  
+  // const reduce = people.reduce((acc,cur)=>{
+  //   return acc + cur.age 
+  // },0)
+  
+  const reduce = people.reduce((acc,cur) => acc + cur.age ,0)
+  
+  
+  
+  const template = people.reduce((acc,cur)=>{
+	return acc + `<li class="userCard"> ${cur.name} : ${cur.age} </li>`
+  },'')
+  
+  
+  
+  ul.insertAdjacentHTML('beforeend',template)
+  
+  
   // reduceRight
   
   /* string ←→ array 변환 ------------------ */
   
-  // split
-  // join
+  const str = '유진 정민 현주 재명'
+  
+  // split : 문자 → 배열
+  const stringToArray = str.split(' ');
+  console.log(stringToArray);
+  
+  
+  
+  // join : 배열 → 문자
+  const arrayToString = stringToArray.join('/');
+  console.log( arrayToString );
+  
+  
+  
+  
+  
+  // const user = {
+  //   grades:[1,2,3],
+  //   sayHi(){
+	  
+  //     this.grades.forEach(()=>{
+  //       this
+  //     })
+  //   }
+  // }
+  
+  
+  const products = [
+	{name: '냉동 만두', price: 10000, brand: '비비고'},
+	{name: '냉동 피자', price: 15000, brand: '오뚜기'},
+	{name: '냉동 치킨 너겟', price: 12000, brand: '하림'},
+	{name: '냉동 감자튀김', price: 8000, brand: '맥케인'},
+	{name: '냉동 새우', price: 18000, brand: '곰곰'}
+  ];
+  
+  
+  const forEach = (f,i) => {
+	for(const a of i) f(a)
+  }
+  
+  forEach((item)=>{
+	console.log( item );
+  },[1,2,3])
+  
+  
+  
+  const map = (f,i) => {
+	let result = [];
+  
+	for(const a of i){
+	  result.push( f(a) )
+	}
+	
+	return result;
+  }
+  
+  
+  const _filter = (f,i) => {
+	let result = [];
+  
+	for(const a of i){
+	  if(f(a)) result.push(a)
+	}  
+	return result;
+  }
+  
+  _filter(n => n > 3,[1,2,3,4,5]) 
+  
+  
+  
+  const _reduce = (f,acc,i) => {
+  
+	if(!i){
+	  // i = acc;
+	  // acc = i.shift()
+	  i = acc[Symbol.iterator]();
+	  acc = i.next().value
+  
+	}
+	
+  
+	for(const a of i){
+	  acc = f(acc,a);
+	}
+  
+	return acc;
+  }
+  
+  _reduce(()=> '', products)
+  
+  const add = (a,b) => a + b;
+  
+  console.log( _reduce( (t,p) => t + p.price, 0,products) );
+  
+  
+  
+  console.log( 
+  
+  
+	_reduce(
+	  add,
+	  map(p => p.price,
+		_filter(p => p.price < 10000,products)),
+	)
+	
+  );
+  
+  
+  // start(
+  //   add,
+  //   map(),
+  //   filter(),
+  //   reduce,
+  //   log
+  // )
+  

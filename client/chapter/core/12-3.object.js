@@ -11,16 +11,16 @@
 // JavaScript Engine 내부의 Garbage Collector가 끊임없이 도달 가능한 값을 확인합니다.
 // Garbage Collector에 의해 확인 된 도달 할 수 없는 값은 메모리에서 삭제됩니다.
 
-const memoizedObject = {
+let memoizedObject = {
 	name: '메모리에 기억된 객체',
   };
   
-memoizedObject = null;
-
-
-
-
-
+  
+  memoizedObject = null;
+  
+  
+  
+  
   // memoizedObject가 참조한 데이터를 메모리 상에서 제거하도록 코드를 작성해봅니다.
   // ※ 도달할 수 없는 상태가 되면 Garbage Collector에 의해 메모리 상에서 제거됩니다.
   

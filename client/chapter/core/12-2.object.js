@@ -24,30 +24,41 @@ console.log(messenger === conversationTool);
 
 // 객체 복사
 // 1. for ~ in 문을 사용한 복사
-for(let eky in messenger){
-	cloneObject[key] = messenger[key]
+
+const cloneObject = {};
+
+for(let key in messenger){
+  cloneObject[key] = messenger[key]
 }
 
-console.log(cloneObject);
+console.log( cloneObject);
 
 // 2. Object.assign()을 사용한 복사
+
 const copyObject = Object.assign({},messenger);
 
 console.log(copyObject);
 
-// 3. 전개 연산자(...)를 사용한 복사
-const spreadObject = { ...messenger };
 
-console.log(spreadObject);
+
+// 3. 전개 연산자(...)를 사용한 복사
+
+const spreadObject = {...messenger};
+
+console.log( spreadObject );
 
 // 4. 객체를 복사해주는 유틸 함수 
-const copideObject = (obj) => object.assign({},obj)
 
-const newObject = 
+
+const copiedObject = (obj) => Object.assign({},obj)
+
+
+const newObject = copiedObject(messenger);
+
+
 
 
 // 객체 병합(합성)
-// mixin
 const cssMapA = {
   color: '#4b004b',
   margin: '0 auto',
@@ -61,7 +72,10 @@ const cssMapB = {
   color: '#3f9e97',
 };
 
-let combinedCssMap = Object.assign({},cssMapA,cssMapB);
+// mixin 
+
+// let combinedCssMap = Object.assign({},cssMapA,cssMapB)
+let combinedCssMap = {...cssMapA,...cssMapB}
 
 
 // 중첩된 프로퍼티에 객체를 포함하는 객체 복사
@@ -77,7 +91,15 @@ const containerStyles = {
   },
 };
 
-let copiedContainerStyles;
+
+let copiedContainerStyles = {
+  ...containerStyles,
+  ['max-width']:{
+    ...containerStyles['max-width']
+  }
+};
+
+// let copiedContainerStyles = cloneDeep(containerStyles);
 
 
 // 1. 깊은 복사 유틸리티 함수
@@ -95,10 +117,6 @@ function cloneDeep(object) {
 
 
 
-
-
-// 예시 1 ) 어려워서 알면 좋은거 
-
 console.clear()
 
 const defaultOptions = {
@@ -114,31 +132,34 @@ const defaultOptions = {
 function ajax(options){
 
 
-  const {method,headers,body}  = {
+  const {method,body,headers} = {
     ...defaultOptions,
     ...options,
     headers:{
       ...defaultOptions.headers,
-      ...options.headers,
+      ...options.headers
     }
   }
 
-  // const {method,headers,body} = newOptions;
+  // const {method,body} = mixin
 
-  // console.log( newOptions );
+  console.log(headers);
 
-  // method, body, header
-
-  console.log(method);
-
-
-
+  
+  
 }
 
 
+//  왜 객체로 전달해요? 순서 상관 x 
+
 ajax({
-  method:'POST',
+  body:'data',
+  headers:{
+    'content':'text'
+  }
 })
+
+
 
 
 
@@ -146,3 +167,4 @@ ajax({
 // _.cloneDeep(value)
 // 참고: https://lodash.com/docs/4.17.15#cloneDeep
 // CDN : https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+
