@@ -1,3 +1,6 @@
+
+
+
 /*
 *  html5resetcss
 */
@@ -17,33 +20,72 @@ hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padd
 input,select{vertical-align:middle}
 
 
-#header{
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem;
-	box-shadow: 1px 4px 4px 0px #0000002b;
-  
-	nav > ul {
-	  display: flex;
-	  gap:2rem;
-  
-	  li > a{
-		border: 1px solid black;
 
-  			.depth{
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100vw;
-				height: 200px;
-				background-color: dodgerblue;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				overflow: hidden;
-				transition: height 0.3s;
- 			 }
-		}
-	}
+
+
+
+
+#header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 1px 4px 4px 0px #0000002b;
+  position: relative;
+
+  nav > ul {
+    display: flex;
+    /* gap:2rem; */
+
+    li > a{
+      border: 1px solid black;
+      padding: 1rem 2rem;
+
+      .depth{
+        position: absolute;
+        left:0;
+        top:110px;
+        width: 100vw;
+        height: 0;
+        background-color: dodgerblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        /* transition:height 0.3s; */
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

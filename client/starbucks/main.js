@@ -1,36 +1,32 @@
-
-
-
-
-
+/* global gsap */
 
 
 const aList = document.querySelectorAll('nav a');
-const depthList = document.querySelectorAll('.depth');
-const header = document.querySelector('#header');
-
-
-const h = t => t.style.height = 0;
-
-depthList.forEach((item)=>{
-	console.log(item);
-})
-// 변형 (전달하려는 값이 같으면 뒤에 함수 붙여서 사용 가능, 매개변수 2개 이상 못씀)
-// depthList.forEach(console.log)
-// depthList.forEach(h)
 
 
 aList.forEach((a)=>{
-  a.addEventListener('mouseenter',()=>{
 
-    const target = a.lastElementChild;
+  const target = a.lastElementChild;
 
-    depthList.forEach(h)
+  const tl = gsap.timeline({paused:true})
+  .to(target,{height:100,ease:'power3.inOut'})
+  
 
-    target.style.height = '100px';
+  a.addEventListener('mouseenter',()=> tl.play())
+  a.addEventListener('mouseleave',()=> tl.reverse())
 
-  })
 })
 
 
-header.addEventListener('mouseleave', () => depthList.forEach(h));
+
+
+
+
+
+
+
+
+
+
+
+
